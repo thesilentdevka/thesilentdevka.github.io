@@ -1,0 +1,361 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 100px var(--spacing-lg) 60px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.content {
+  animation: slideInLeft 0.8s ease-out;
+  max-width: 600px;
+}
+
+.signature {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.8rem;
+  font-weight: 400;
+  color: var(--primary);
+  margin-bottom: var(--spacing-md);
+  display: inline-block;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.title {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-xl);
+  color: var(--text-dark);
+  font-weight: 800;
+}
+
+.highlight {
+  color: var(--primary);
+  display: inline-block;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-2xl);
+  line-height: 1.75;
+  max-width: 540px;
+}
+
+.cta {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-md);
+}
+
+.btnPrimary,
+.btnSecondary {
+  padding: 1rem 2rem;
+  border-radius: var(--radius-lg);
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+}
+
+.btnSecondary {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  transition: all var(--transition-base);
+}
+
+.btnSecondary:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary-dark);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+.visual {
+  position: relative;
+  height: 500px;
+  animation: slideInRight 0.8s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageContainer {
+  --mouse-x: 0px;
+  --mouse-y: 0px;
+  position: relative;
+  width: 480px;
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4rem;
+}
+
+.halo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at calc(50% + var(--mouse-x) / 5) calc(50% + var(--mouse-y) / 5),
+    rgba(59, 130, 246, 0.4) 0%,
+    rgba(59, 130, 246, 0.2) 30%,
+    transparent 70%
+  );
+  filter: blur(30px);
+  transition: all 0.3s ease-out;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid var(--bg-lighter);
+  box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+  z-index: 1;
+  transition: transform var(--transition-base);
+}
+
+.imageWrapper:hover {
+  transform: scale(1.05);
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.floatingCard {
+  display: none;
+}
+
+.floatingCard:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
+}
+
+.floatingCard:nth-child(1) {
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.floatingCard:nth-child(2) {
+  top: 40%;
+  right: 10%;
+  animation-delay: 0.5s;
+}
+
+.floatingCard:nth-child(3) {
+  bottom: 10%;
+  left: 20%;
+  animation-delay: 1s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.emoji {
+  font-size: 2.5rem;
+}
+
+.cardContent p {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 0.95rem;
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--text-muted);
+  animation: bounce 2s ease-in-out infinite;
+  z-index: 1;
+}
+
+.scrollArrow {
+  width: 2px;
+  height: 24px;
+  background: var(--primary);
+  border-radius: 2px;
+  animation: slideDown 1.5s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  .visual {
+    height: 350px;
+  }
+
+  .imageContainer {
+    width: 380px;
+    height: 380px;
+    margin-left: 2rem;
+  }
+
+  .imageWrapper {
+    width: 360px;
+    height: 360px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .cta {
+    flex-direction: column;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .visual {
+    height: 300px;
+  }
+
+  .imageContainer {
+    width: 300px;
+    height: 300px;
+    margin-left: 0;
+  }
+
+  .imageWrapper {
+    width: 280px;
+    height: 280px;
+  }
+
+  .floatingCard {
+    padding: var(--spacing-md);
+    font-size: 0.9rem;
+  }
+
+  .emoji {
+    font-size: 2rem;
+  }
+}
